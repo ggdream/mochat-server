@@ -7,16 +7,16 @@ go:
   - 1.15.5
 
 
-before_install:
-  - docker -v
-  - sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
-  - sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  - sudo apt-key fingerprint 0EBFCD88
-  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - sudo apt-get -y update && sudo apt-get install docker-ce docker-ce-cli containerd.io -y
-  - sudo gpasswd -a ${USER} docker
-  - sudo systemctl restart docker
-  - newgrp - docker
+#before_install:
+#  - docker -v
+#  - sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common -y
+#  - sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#  - sudo apt-key fingerprint 0EBFCD88
+#  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+#  - sudo apt-get -y update && sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+#  - sudo gpasswd -a ${USER} docker
+#  - sudo systemctl restart docker
+#  - newgrp - docker
 
 install:
   - go mod download
