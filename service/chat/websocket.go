@@ -1,11 +1,7 @@
 package chat
 
 import (
-	"context"
 	"fmt"
-	"time"
-	"unsafe"
-
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 )
@@ -19,32 +15,27 @@ func Im(c *gin.Context) {
 	}
 	defer conn.Close()
 
-	cancelCtx, cancelFunc := context.WithCancel(ctx)
-	defer cancelFunc()
+	trans[c.Query("from")] = conn
+	defer delete(trans, c.Query("from"))
 
-	go readFromRemote(cancelCtx, conn)
-	wirteToRemote(conn)
+	handler(conn, c.Query("to"))
 }
 
-func readFromRemote(ctx context.Context, conn *websocket.Conn) {
+func handler(conn *websocket.Conn, to string) {
 	for {
-		select {
-		case <-ctx.Done():
+		msgType, msg, err := conn.ReadMessage()
+		if err != nil {
+			fmt.Println(err)
 			return
-		default:
-			_, msg, err := conn.ReadMessage()
-			if err != nil {
-				fmt.Println(err)
-				continue
-			}
-			fmt.Println(*(*string)(unsafe.Pointer(&msg)))
 		}
-	}
-}
-
-func wirteToRemote(conn *websocket.Conn) {
-	err := conn.WriteMessage(websocket.TextMessage, []byte(time.Now().Format("2006-01-02 15:04:05")))
-	if err != nil {
-		fmt.Println(err)
+		if trans[to] == nil{
+			conn.WriteMessage(msgType, []byte("没上线"))
+			continue
+		}
+		if err := trans[to].WriteMessage(msgType, msg); err != nil {
+			fmt.Println(err)
+			return
+		}
+		//fmt.Println(*(*string)(unsafe.Pointer(&msg)))
 	}
 }

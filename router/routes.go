@@ -18,5 +18,6 @@ func SetRoutes(r *gin.Engine) {
 	im := r.Group("/chat")
 	{
 		im.GET("/msg", chat.GetMsg)
+		im.GET("/websocket", chat.Im)
 	}
 }

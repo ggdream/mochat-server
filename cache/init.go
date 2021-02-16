@@ -1,6 +1,5 @@
 package cache
 
-//go:generate docker run -d -p 6379:6379 --name mo-redis --rm redis:6.0.10
 import (
 	"context"
 	"github.com/ggdream/mochat-server/config"

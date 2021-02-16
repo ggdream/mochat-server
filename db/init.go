@@ -1,6 +1,5 @@
 package db
 
-//go:generate docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=test --name mo-mysql --rm mysql:5.7.33
 import (
 	"database/sql"
 	_"github.com/go-sql-driver/mysql" // mysql驱动
