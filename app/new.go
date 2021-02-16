@@ -18,5 +18,5 @@ func New() error {
 
 	router.SetRoutes(r)
 
-	return r.Run()
+	return r.Run(":54639")
 }
