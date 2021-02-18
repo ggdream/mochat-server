@@ -1,7 +1,6 @@
 package chat
 
 import (
-	"github.com/ggdream/mochat-server/db"
 	"github.com/ggdream/mochat-server/model/msg"
 	"github.com/gin-gonic/gin"
 )
@@ -15,11 +14,11 @@ func GetMsg(c *gin.Context) {
 		return
 	}
 
-	res, err := db.SearchMsg(gm)
-	if err != nil {
-		c.JSON(200, gin.H{"code": -2, "data": "查询失败"})
-		return
-	}
+	//res, err := 1, erro
+	//if err != nil {
+	//	c.JSON(200, gin.H{"code": -2, "data": "查询失败"})
+	//	return
+	//}
 
-	c.JSON(200, gin.H{"code": 0, "data": res})
+	c.JSON(200, gin.H{"code": 0, "data": 1})
 }

@@ -42,9 +42,8 @@ const (
 
 	sqlTableMsg = `create table if not exists msg (
     id INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    me VARCHAR(10) NOT NULL,
-    you VARCHAR(10) NOT NULL,
-    time INT(13) NOT NULL
+    ` + "`from`" + `VARCHAR(10) NOT NULL,
+    ` + "`to`" + `VARCHAR(10) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4;`
 )
 
