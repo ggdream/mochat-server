@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/ggdream/mochat-server/cache"
 	"github.com/ggdream/mochat-server/db"
+	"github.com/ggdream/mochat-server/rpc"
 )
 
 
@@ -14,5 +15,9 @@ func initInfra() error {
 	if err := cache.Init(); err != nil {
 		return err
 	}
+	if err := rpc.Init(); err != nil {
+		return err
+	}
+
 	return nil
 }

@@ -7,4 +7,7 @@ const (
 
 	// RedisURI 连接redis的uri
 	RedisURI	= "localhost:6379"
+
+	// RpcURI	连接Dart GRPC 服务
+	RpcURI		= ":9999"
 	)
