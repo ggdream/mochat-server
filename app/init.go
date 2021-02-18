@@ -6,7 +6,7 @@ import (
 )
 
 
-//go:generate docker rm -f mo-mysql mo-redis
+//go:generate docker rm -f mo-mysql mo-redis mo-mongo
 func initInfra() error {
 	if err := db.Init(); err != nil {
 		return err

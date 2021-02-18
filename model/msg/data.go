@@ -1,10 +1,15 @@
 package msg
 
 
+type Status struct {
+	Code		int32		`json:"code"`
+	Message		string		`json:"message"`
+}
+
 type Message struct {
-	Me				string	`json:"me" form:"me"`
-	You				string	`json:"you" form:"you"`
-	Time			int64	`json:"time" form:"time"`
+	ID				string	`json:"id"`
+	From			string	`json:"from"`
+	To				string	`json:"to"`
 }
 
 func NewMessage() *Message {
@@ -12,13 +17,18 @@ func NewMessage() *Message {
 }
 
 type DescMsg struct {
-	Me				string	`json:"me" form:"me" binding:"required"`
-	You				string `json:"you" form:"you" binding:"required"`
-	Start			int		`json:"start" form:"start" binding:"required"`
-	End				int		`json:"end" form:"end"`
-	Offset			int		`json:"offset" form:"offset" binding:"required"`
+	From			string	`json:"from" form:"from"`
+	To				string	`json:"to" form:"to" binding:"required"`
+	Start			uint32	`json:"start" form:"start" binding:"required"`
+	Offset			uint32	`json:"offset" form:"offset" binding:"required"`
 }
 
 func NewDescMsg() *DescMsg {
 	return new(DescMsg)
+}
+
+type Result struct {
+	Code			int32		`json:"code"`
+	Message			string		`json:"message"`
+	Records			[]*Message	`json:"records"`
 }

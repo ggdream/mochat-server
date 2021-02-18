@@ -1,0 +1,36 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+option go_package = ".;api";
+
+
+message Record {
+  string id = 1;
+  string from = 2;
+  string to = 3;
+  google.protobuf.Timestamp time = 4;
+}
+
+message QueryMeta {
+  string from = 1;
+  string to = 2;
+  uint32 start = 3;
+  uint32 offset = 4;
+}
+
+message Status {
+  int32 code = 1;
+  string message = 2;
+}
+
+message Data {
+  int32 code = 1;
+  string message = 2;
+  repeated Record records = 3;
+}
+
+
+service Remote {
+  rpc Send(Record) returns (Status) {}
+  rpc Query(QueryMeta) returns (Data) {}
+}
