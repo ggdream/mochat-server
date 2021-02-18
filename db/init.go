@@ -39,20 +39,10 @@ const (
     username VARCHAR(10) NOT NULL,
     password VARCHAR(10) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4;`
-
-	sqlTableMsg = `create table if not exists msg (
-    id INT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    ` + "`from`" + `VARCHAR(10) NOT NULL,
-    ` + "`to`" + `VARCHAR(10) NOT NULL
-)ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4;`
 )
 
 func create() error {
 	if _, err := Get().Exec(sqlTableUser); err != nil {
-		return err
-	}
-
-	if _, err := Get().Exec(sqlTableMsg); err != nil {
 		return err
 	}
 
